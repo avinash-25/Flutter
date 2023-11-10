@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MCA 3rd Sem - Draggable Demo',
+      title: 'Draggable Demo',
       home: HomePage(),
     );
   }
@@ -23,6 +25,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _targetUrl = '';
   int img = 1;
+  int img_ink = 1;
+  Random random = new Random();
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +88,25 @@ class _HomePageState extends State<HomePage> {
                     :Container(),
                   );
                 }
+              ),
+              InkWell(
+                splashColor: Colors.red,
+                highlightColor: Colors.yellow.withOpacity(0.5),
+                child: Container(
+                  width: 300,
+                  height: 200,
+                  alignment: Alignment.center,
+                  child: Image.asset('Images/$img.png', fit: BoxFit.fill, ),
+                ),
+                onTap: (){
+                  setState(() {
+                    img_ink = random.nextInt(7) +1;
+                    // if(img_ink < 7)
+                    //   img_ink += 1;
+                    // else
+                    //   img_ink = 1;
+                  });
+                },
               )
             ],
           ),
